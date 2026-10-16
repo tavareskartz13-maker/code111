@@ -4,7 +4,7 @@ Painel de operações inspirado na referência visual fornecida: tema escuro, de
 
 ## Abrir no computador
 
-No GitHub, use **Code → Download ZIP**, extraia **a pasta inteira** e abra `index.html`. Mantenha `app.js` e `styles.css` ao lado dele. Não baixe apenas o HTML.
+Baixe **somente `index.html`** e abra com dois cliques no navegador. O estilo e o JavaScript estão embutidos: não é necessário baixar outros arquivos. Você também pode usar **Code → Download ZIP**, extrair e abrir o HTML.
 
 Ou inicie um servidor estático na raiz do projeto:
 
@@ -12,7 +12,7 @@ Ou inicie um servidor estático na raiz do projeto:
 python3 -m http.server 8011 --bind 127.0.0.1
 ```
 
-O site não precisa de instalação nem build. A fonte Inter é opcional e tem fallback local.
+O site não precisa de instalação, build ou conexão à internet. Estilos, ícones e JavaScript estão dentro de `index.html`; as fontes são locais.
 
 ## Editar os valores
 
@@ -50,6 +50,9 @@ O teste em `tests/smoke.cjs` usa Node.js, Playwright e Chromium. No ambiente de 
 
 ```sh
 node tests/smoke.cjs
+node tests/standalone.cjs
 ```
 
 É possível definir `TEST_URL` e `CHROMIUM_PATH`. O teste usa um navegador isolado e não altera os dados do seu navegador pessoal. Verifica edição e persistência dos indicadores, independência dos períodos, gráfico, cadastro de produtos e pedidos, importação/exportação, financeiro, fornecedores, canais, chamados, cálculo de margem, temas, backup/restauração, exclusão e uso no celular.
+
+O teste `standalone.cjs` copia apenas o HTML para uma pasta isolada e carrega seu conteúdo com interceptação de navegação e rede desativada, verificando que nenhuma dependência externa é requisitada. O Chromium gerenciado do ambiente bloqueia URLs `file:`, então esse teste não executa navegação direta pelo sistema de arquivos.
