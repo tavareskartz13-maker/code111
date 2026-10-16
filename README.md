@@ -1,17 +1,55 @@
-# Aurê — Estética e bem-estar
+# Tavares · Dashboard
 
-Site demonstrativo estático em português, com layout responsivo, animações e interações em JavaScript.
+Painel de operações inspirado na referência visual fornecida: tema escuro, destaque amarelo, indicadores, gráfico de faturamento, status da operação, últimos pedidos e top produtos. Projeto independente, sem vínculo ou conexão com a Suprify.
 
-## Visualizar
+## Abrir no computador
 
-Abra `index.html` no navegador ou execute:
+No GitHub, use **Code → Download ZIP**, extraia **a pasta inteira** e abra `index.html`. Mantenha `app.js` e `styles.css` ao lado dele. Não baixe apenas o HTML.
+
+Ou inicie um servidor estático na raiz do projeto:
 
 ```sh
-python3 -m http.server 8000
+python3 -m http.server 8011 --bind 127.0.0.1
 ```
 
-Não há dependências ou etapa de build.
+O site não precisa de instalação nem build. A fonte Inter é opcional e tem fallback local.
 
-## Personalizar
+## Editar os valores
 
-Os textos, endereço e horários são demonstrativos. Para ativar o agendamento, configure `CLINIC.whatsapp` no JavaScript de `index.html` com o número real, incluindo 55 e DDD, somente dígitos.
+Clique no **pequeno ícone de olho no canto superior esquerdo**, acima do menu Dashboard. No celular, abra o menu lateral primeiro. Ele abre um editor discreto; não é um mecanismo de autenticação.
+
+Você pode modificar:
+
+- Faturamento Total, Pedidos no Período, Ticket Médio e Itens Despachados.
+- Pedidos hoje e os nove status da operação.
+- Total acumulado e valores diários ou mensais do gráfico.
+
+Os períodos **7d, 30d e 12m** guardam indicadores independentes. Selecione o período antes de editar. O botão de cálculo do ticket divide o faturamento pelos pedidos. Uma série manual precisa ter 7, 30 ou 12 valores, separados por ponto e vírgula ou linha; seu total é calculado automaticamente. Sem série manual, o painel distribui o total em uma curva ilustrativa. Os indicadores manuais são independentes dos pedidos cadastrados.
+
+## Recursos
+
+- **Catálogo:** cadastrar, editar, excluir e exportar produtos.
+- **Importadores:** importar CSV e baixar modelo; SKUs repetidos são ignorados.
+- **Fornecedores:** manter contatos e observações.
+- **Pedidos:** cadastrar pedidos, vincular produtos e alterar status. Alimentam Últimos pedidos e Top produtos.
+- **Integrações:** salvar atalhos para lojas e canais; não sincroniza contas externas.
+- **Financeiro & PIX:** registrar movimentações, exportar CSV e guardar/copiar uma chave PIX. Não processa pagamentos.
+- **Ferramentas:** calcular margem e preço sugerido, exportar indicadores e gerenciar backups JSON.
+- **Tutoriais e Chamados:** orientações de uso e registro local de pendências.
+- Busca por nome, SKU ou cliente; tema claro/escuro; perfil editável; layout responsivo.
+
+**Os dados ficam no localStorage deste navegador e desta origem.** Não são compartilhados entre dispositivos ou usuários. Limpar os dados do navegador pode apagá-los. Faça backups em **Ferramentas → Backup e restauração**. Ao migrar do arquivo local para um endereço publicado, exporte e restaure o backup na nova origem. Não há backend, login, sincronização de vendas, integração logística ou recarga real.
+
+## Publicar no GitHub Pages
+
+Em **Settings → Pages**, selecione **Deploy from a branch → main → / (root)** e salve. O GitHub exibirá o endereço quando a publicação terminar. Todos os arquivos estáticos necessários estão na raiz.
+
+## Testes de interface
+
+O teste em `tests/smoke.cjs` usa Node.js, Playwright e Chromium. No ambiente de desenvolvimento em nuvem, eles já estão disponíveis. Com o servidor rodando na porta 8011:
+
+```sh
+node tests/smoke.cjs
+```
+
+É possível definir `TEST_URL` e `CHROMIUM_PATH`. O teste usa um navegador isolado e não altera os dados do seu navegador pessoal. Verifica edição e persistência dos indicadores, independência dos períodos, gráfico, cadastro de produtos e pedidos, importação/exportação, financeiro, fornecedores, canais, chamados, cálculo de margem, temas, backup/restauração, exclusão e uso no celular.
