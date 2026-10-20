@@ -1425,6 +1425,516 @@
           animation: none !important;
         }
       }
+      /* Sales simulation */
+      .sim-banner {
+        position: relative;
+        overflow: hidden;
+        border: 1px solid #f7e50038;
+        border-radius: 17px;
+        padding: 24px;
+        margin-bottom: 24px;
+        background:
+          radial-gradient(ellipse at 95% 10%, #f7e5000a, transparent 65%),
+          var(--surface);
+      }
+      .sim-banner-top,
+      .sim-identity,
+      .sim-controls,
+      .sim-bottom,
+      .sim-facts {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+      .sim-banner-top {
+        justify-content: space-between;
+        gap: 24px;
+      }
+      .sim-symbol {
+        display: grid;
+        place-items: center;
+        width: 48px;
+        height: 48px;
+        background: #f7e50012;
+        border: 1px solid #f7e50033;
+        color: var(--yellow);
+        border-radius: 14px;
+        flex-shrink: 0;
+      }
+      .sim-symbol .icon {
+        width: 25px;
+        height: 25px;
+      }
+      .sim-eyebrow {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        font-size: 8px;
+        letter-spacing: 1.5px;
+        color: var(--yellow);
+        font-weight: 700;
+        margin-bottom: 8px;
+      }
+      .sim-eyebrow b,
+      .sim-live-dot {
+        display: inline-block;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--yellow);
+        flex-shrink: 0;
+      }
+      .is-running .sim-eyebrow b {
+        animation: sim-pulse 1.2s infinite;
+      }
+      .sim-banner h2 {
+        font-size: 19px;
+        letter-spacing: -0.6px;
+      }
+      .sim-banner p {
+        font-size: 11px;
+        margin-top: 6px;
+      }
+      .sim-controls {
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        gap: 10px;
+      }
+      .sim-controls .text-button {
+        width: 100%;
+        text-align: right;
+        font-size: 10px;
+      }
+      .sim-bottom {
+        justify-content: space-between;
+        border-top: 1px solid var(--line);
+        margin-top: 22px;
+        padding-top: 18px;
+        min-height: 58px;
+      }
+      .sim-facts {
+        gap: 28px;
+        flex-wrap: wrap;
+        font-size: 11px;
+        color: var(--muted);
+      }
+      .sim-facts strong {
+        font-size: 17px;
+        letter-spacing: -0.4px;
+        color: var(--text);
+        margin-right: 4px;
+        font-variant-numeric: tabular-nums;
+      }
+      .sim-speed {
+        font-size: 10px;
+      }
+      .sim-mini-bars {
+        display: flex;
+        gap: 4px;
+        align-items: flex-end;
+        width: 100px;
+        height: 31px;
+        flex-shrink: 0;
+        opacity: 0.6;
+      }
+      .sim-mini-bars i {
+        display: block;
+        flex: 1;
+        height: var(--h);
+        background: var(--yellow);
+        border-radius: 2px 2px 0 0;
+        transform-origin: bottom;
+        opacity: 0.65;
+      }
+      .is-running .sim-mini-bars i {
+        animation: sim-bars 1s var(--delay) infinite alternate;
+      }
+      .sim-progress {
+        height: 3px;
+        background: #f7e50012;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+      }
+      .sim-progress span {
+        height: 100%;
+        display: block;
+        background: var(--yellow);
+        transition: width 0.4s;
+      }
+      .demo-badge {
+        display: inline-flex !important;
+        font-size: 8px !important;
+        font-weight: 600;
+        color: var(--yellow) !important;
+        letter-spacing: 0.4px;
+        background: #f7e5000c;
+        border: 1px solid #f7e50030;
+        padding: 3px 5px;
+        border-radius: 4px;
+        margin: 0 0 0 6px !important;
+        vertical-align: middle;
+      }
+      .simulation-dashboard-note {
+        margin-top: 10px;
+        color: var(--yellow);
+        font-size: 10px;
+        display: inline-flex;
+        gap: 7px;
+        align-items: center;
+      }
+      .simulation-dashboard-note::before {
+        content: "";
+        width: 6px;
+        height: 6px;
+        display: block;
+        background: var(--yellow);
+        border-radius: 50%;
+      }
+      .sim-modal-intro .badge {
+        margin-bottom: 12px;
+      }
+      .sim-modal-intro p {
+        font-size: 12px;
+        line-height: 1.8;
+        margin-bottom: 20px;
+      }
+      .sim-presets {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 22px;
+        flex-wrap: wrap;
+      }
+      .sim-presets > span {
+        color: var(--muted);
+        font-size: 10px;
+        margin-right: auto;
+      }
+      .sim-presets button {
+        background: var(--input);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        padding: 9px 13px;
+        font-size: 11px;
+        color: var(--muted);
+      }
+      .sim-presets button.selected {
+        border-color: var(--yellow);
+        background: #f7e5000d;
+        color: var(--yellow);
+      }
+      .sim-options {
+        margin-top: 20px;
+        border-top: 1px solid var(--line);
+        padding-top: 20px;
+        display: grid;
+        gap: 17px;
+      }
+      .sim-options label {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        cursor: pointer;
+      }
+      .sim-options input {
+        accent-color: var(--yellow);
+        width: 16px;
+        height: 16px;
+        margin: 0;
+        flex-shrink: 0;
+      }
+      .sim-options strong {
+        font-size: 11px;
+        font-weight: 500;
+        display: block;
+      }
+      .sim-options small {
+        font-size: 10px;
+        display: block;
+        line-height: 1.6;
+        color: var(--muted);
+        margin-top: 5px;
+      }
+      .sim-estimate {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 18px;
+        margin-top: 23px;
+        padding: 18px;
+        background: var(--input);
+        border: 1px solid var(--line);
+        border-radius: 12px;
+      }
+      .sim-estimate span {
+        font-size: 10px;
+        display: block;
+        color: var(--muted);
+        margin-bottom: 8px;
+      }
+      .sim-estimate strong {
+        font-size: 20px;
+        letter-spacing: -0.5px;
+        color: var(--yellow);
+      }
+      .sim-estimate small {
+        flex-basis: 100%;
+        color: var(--muted);
+        font-size: 9px;
+      }
+      .orders-pagination {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 16px 0;
+      }
+      .sales-feed {
+        position: fixed;
+        right: 24px;
+        top: auto;
+        bottom: 75px;
+        width: min(385px, calc(100vw - 30px));
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        z-index: 45;
+        pointer-events: none;
+      }
+      .sale-notification {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        background: var(--surface);
+        border: 1px solid #3be79b50;
+        border-radius: 14px;
+        padding: 16px;
+        box-shadow: 0 14px 50px #0005;
+        animation: sale-entry 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+      }
+      .sale-check {
+        width: 32px;
+        height: 32px;
+        display: grid;
+        place-items: center;
+        background: #3be79b12;
+        border: 1px solid #3be79b55;
+        border-radius: 50%;
+        color: #3be79b;
+        flex-shrink: 0;
+      }
+      .sale-notification > div {
+        min-width: 0;
+        flex: 1;
+      }
+      .sale-notification-label {
+        display: block;
+        font-size: 7px;
+        letter-spacing: 1px;
+        color: #3be79b;
+        margin-bottom: 7px;
+        font-weight: 650;
+      }
+      .sale-notification-label b {
+        font-size: 6px;
+        border: 1px solid var(--line);
+        border-radius: 3px;
+        margin-left: 5px;
+        padding: 2px 3px;
+        color: var(--muted);
+        font-weight: 500;
+      }
+      .sale-notification > div > strong {
+        display: block;
+        font-size: 12px;
+      }
+      .sale-notification small {
+        display: block;
+        font-size: 9px;
+        color: var(--muted);
+        margin-top: 5px;
+      }
+      .sale-amount {
+        font-size: 15px;
+        color: #3be79b;
+        letter-spacing: -0.5px;
+        white-space: nowrap;
+      }
+      .simulation-dock {
+        position: fixed;
+        bottom: 18px;
+        left: calc(var(--sidebar) + 24px);
+        z-index: 30;
+        display: flex;
+        gap: 10px;
+        padding: 10px;
+        border: 1px solid #f7e50050;
+        border-radius: 13px;
+        background: var(--surface);
+        box-shadow: 0 10px 40px #0006;
+      }
+      .simulation-dock > button:first-child {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        background: transparent;
+        text-align: left;
+        font-size: 11px;
+      }
+      .simulation-dock small {
+        display: block;
+        color: var(--muted);
+        font-size: 9px;
+        margin-top: 4px;
+      }
+      .simulation-dock .icon-button {
+        width: 32px;
+        height: 32px;
+        border-radius: 8px;
+      }
+      .sim-celebration {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: 70;
+        overflow: hidden;
+      }
+      .sim-celebration i {
+        position: absolute;
+        top: -15px;
+        left: var(--x);
+        width: 6px;
+        height: 10px;
+        background: var(--color);
+        animation: sim-confetti 1.5s var(--delay) ease-out forwards;
+        border-radius: 2px;
+      }
+      @keyframes sim-pulse {
+        50% {
+          box-shadow: 0 0 0 5px #f7e50017;
+          opacity: 0.6;
+        }
+      }
+      @keyframes sim-bars {
+        to {
+          transform: scaleY(0.35);
+        }
+      }
+      @keyframes sale-entry {
+        from {
+          opacity: 0;
+          transform: translateX(25px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+      @keyframes sim-confetti {
+        to {
+          transform: translate(var(--drift), 95vh) rotate(540deg);
+          opacity: 0;
+        }
+      }
+      @media (max-width: 900px) {
+        .sim-banner-top {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+        .sim-controls {
+          justify-content: flex-start;
+          width: 100%;
+        }
+        .sim-controls .text-button {
+          width: auto;
+          text-align: left;
+        }
+        .sim-speed {
+          display: none;
+        }
+      }
+      @media (max-width: 720px) {
+        .sim-banner {
+          padding: 18px;
+          margin-bottom: 20px;
+        }
+        .sim-symbol {
+          width: 38px;
+          height: 38px;
+          border-radius: 11px;
+        }
+        .sim-banner h2 {
+          font-size: 17px;
+        }
+        .sim-banner p {
+          font-size: 10px;
+          line-height: 1.7;
+        }
+        .sim-identity {
+          gap: 12px;
+        }
+        .sim-facts {
+          gap: 12px;
+          align-items: flex-start;
+          flex-direction: column;
+          font-size: 10px;
+        }
+        .sim-facts strong {
+          font-size: 16px;
+        }
+        .sim-banner-top {
+          gap: 18px;
+        }
+        .sim-bottom {
+          padding-top: 15px;
+          margin-top: 18px;
+        }
+        .sim-mini-bars {
+          width: 80px;
+          height: 40px;
+        }
+        .sales-feed {
+          top: auto;
+          bottom: 75px;
+          right: 15px;
+        }
+        .sales-feed .sale-notification:nth-child(n + 2) {
+          display: none;
+        }
+        .sale-notification {
+          padding: 13px;
+          gap: 9px;
+        }
+        .simulation-dock {
+          bottom: 65px;
+          left: 15px;
+          max-width: calc(100% - 30px);
+        }
+        .sim-presets {
+          gap: 5px;
+        }
+        .sim-presets > span {
+          width: 100%;
+          margin-bottom: 4px;
+        }
+        .sim-presets button {
+          flex: 1;
+          padding: 9px;
+        }
+        .sim-estimate strong {
+          font-size: 19px;
+        }
+        .orders-pagination {
+          gap: 12px;
+        }
+        .sim-options strong {
+          line-height: 1.6;
+        }
+        .sale-amount {
+          font-size: 13px;
+        }
+      }
     </style>
   </head>
   <body>
@@ -1660,6 +2170,14 @@
       </form>
     </dialog>
     <div class="toast" id="toast" role="status" hidden></div>
+    <div
+      class="sales-feed"
+      id="sales-feed"
+      role="log"
+      aria-label="Notificações de vendas simuladas"
+      aria-live="polite"
+    ></div>
+    <div class="simulation-dock" id="simulation-dock" hidden></div>
     <script>
       "use strict";
       const $ = (s, root = document) => root.querySelector(s),
@@ -1885,6 +2403,16 @@
               item.sku = String(item.sku || "");
             }
             if (type === "orders") {
+              item.simulated = r.simulated === true;
+              item.includeMetrics = item.simulated && r.includeMetrics === true;
+              item.simulationBatch = item.simulated
+                ? String(r.simulationBatch || "").slice(0, 60)
+                : "";
+              if (
+                typeof r.createdAt === "string" &&
+                Number.isFinite(Date.parse(r.createdAt))
+              )
+                item.createdAt = r.createdAt;
               item.amount = numeric(item.amount);
               item.quantity = Math.floor(numeric(item.quantity) || 1);
               if (!statuses.some(([k]) => k === item.status))
@@ -1984,12 +2512,22 @@
           ],
           list.map(
             (o) =>
-              `<tr><td><strong>#${esc(o.id.slice(0, 8).toUpperCase())}</strong><small>${esc(o.customer)} · ${esc(dateLabel(o.date))}</small></td><td>${money(o.amount)}</td><td><span class="badge">${esc(statusName(o.status))}</span></td>${actions ? `<td>${actionButtons("orders", o)}</td>` : ""}</tr>`,
+              `<tr><td><strong>#${esc(o.id.slice(0, 8).toUpperCase())}</strong>${o.simulated ? '<span class="demo-badge">SIMULAÇÃO</span>' : ""}<small>${esc(o.customer)} · ${esc(dateLabel(o.date))}${o.createdAt ? " · " + esc(new Date(o.createdAt).toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit", second: "2-digit" })) : ""}</small></td><td>${money(o.amount)}</td><td><span class="badge">${esc(statusName(o.status))}</span></td>${actions ? `<td>${actionButtons("orders", o)}</td>` : ""}</tr>`,
           ),
         );
       }
       function renderDashboard() {
-        const m = metrics();
+        const m = displayMetrics();
+        const contributing = simulationOrdersFor().length;
+        let note = $("#simulation-dashboard-note");
+        if (!note) {
+          note = document.createElement("span");
+          note.id = "simulation-dashboard-note";
+          note.className = "simulation-dashboard-note";
+          $("#dashboard-view .page-heading>div").append(note);
+        }
+        note.hidden = !contributing;
+        note.textContent = `${integer(contributing)} pedidos de simulação incluídos neste resumo`;
         $("#metric-revenue").textContent = money(m.revenue);
         $("#metric-orders").textContent = integer(m.orders);
         $("#metric-today").textContent = integer(m.today);
@@ -2020,7 +2558,9 @@
           )
           .join("");
         const recent = [...state.orders]
-          .sort((a, b) => b.date.localeCompare(a.date))
+          .sort((a, b) =>
+            (b.createdAt || b.date).localeCompare(a.createdAt || a.date),
+          )
           .slice(0, 4);
         $("#recent-orders").innerHTML = recent.length
           ? orderRows(recent)
@@ -2046,7 +2586,7 @@
         renderChart();
       }
       function chartData() {
-        const m = metrics(),
+        const m = displayMetrics(),
           count = period === 365 ? 12 : period;
         if (m.series.length)
           return Array.from({ length: count }, (_, i) => numeric(m.series[i]));
@@ -2162,7 +2702,7 @@
         const m = metrics();
         showDialog(
           `Personalizar painel · ${periodName()}`,
-          `<p class="dialog-description">Ajuste os indicadores do período selecionado. As alterações ficam salvas somente neste navegador. Os cadastros de pedidos permanecem independentes desses indicadores.</p><div class="form-grid">${numField("Faturamento Total (R$)", "revenue", m.revenue, true)}${numField("Pedidos no Período", "orders", m.orders)}${numField("Ticket Médio (R$)", "ticket", m.ticket, true)}${numField("Itens Despachados", "shipped", m.shipped)}${numField("Pedidos hoje", "today", m.today)}${numField("Total acumulado do gráfico (R$)", "total", m.total, true)}<button type="button" class="inline-action full-width" id="calculate-ticket">Calcular ticket pelo faturamento ÷ pedidos</button></div><fieldset class="form-section"><legend>Status da operação</legend><div class="form-grid">${statuses.map(([k, label]) => numField(label, `status_${k}`, m.status[k])).join("")}</div></fieldset><fieldset class="form-section"><legend>Faturamento e Performance</legend><label class="field">Valores ${period === 365 ? "mensais" : "diários"} do gráfico (opcional)<textarea name="series" placeholder="0,00; 150,00; 220,00">${esc(m.series.join("; "))}</textarea><small>Separe por ponto e vírgula ou por linha. Informe ${period === 365 ? 12 : period} valores. O total acumulado será a soma da série. Deixe vazio para distribuir o total automaticamente.</small></label></fieldset>`,
+          `<p class="dialog-description">Ajuste os indicadores do período selecionado. As alterações ficam salvas somente neste navegador. Os valores manuais são preservados. Pedidos do simulador podem ser somados separadamente ao resumo e removidos depois.</p><div class="form-grid">${numField("Faturamento Total (R$)", "revenue", m.revenue, true)}${numField("Pedidos no Período", "orders", m.orders)}${numField("Ticket Médio (R$)", "ticket", m.ticket, true)}${numField("Itens Despachados", "shipped", m.shipped)}${numField("Pedidos hoje", "today", m.today)}${numField("Total acumulado do gráfico (R$)", "total", m.total, true)}<button type="button" class="inline-action full-width" id="calculate-ticket">Calcular ticket pelo faturamento ÷ pedidos</button></div><fieldset class="form-section"><legend>Status da operação</legend><div class="form-grid">${statuses.map(([k, label]) => numField(label, `status_${k}`, m.status[k])).join("")}</div></fieldset><fieldset class="form-section"><legend>Faturamento e Performance</legend><label class="field">Valores ${period === 365 ? "mensais" : "diários"} do gráfico (opcional)<textarea name="series" placeholder="0,00; 150,00; 220,00">${esc(m.series.join("; "))}</textarea><small>Separe por ponto e vírgula ou por linha. Informe ${period === 365 ? 12 : period} valores. O total acumulado será a soma da série. Deixe vazio para distribuir o total automaticamente.</small></label></fieldset>`,
           (data) => {
             const raw = String(data.get("series")).trim(),
               pieces = raw
@@ -2239,6 +2779,7 @@
         renderNav();
         if (next === "tools") $(".tool-submenu").hidden = false;
         renderModule();
+        refreshSimulationDock();
         window.scrollTo(0, 0);
       }
       function renderModule() {
@@ -2277,7 +2818,6 @@
                   )
             }</div>`;
         } else if (view === "orders") {
-          const list = filtered(state.orders);
           html =
             heading(
               "Pedidos",
@@ -2285,7 +2825,7 @@
               "Novo pedido",
               "new-order",
             ) +
-            `<div class="module-toolbar"><input class="module-search" placeholder="Buscar cliente ou pedido…" value="${esc(filter)}" aria-label="Filtrar pedidos"><button class="secondary-button" data-action="export-orders">${icon("download")}Exportar CSV</button></div><div class="panel table-wrap">${list.length ? orderRows(list, true) : empty("cart", "Nenhum pedido encontrado", "Adicione seu primeiro pedido para acompanhar a operação.")}</div><p class="muted" style="margin-top:16px;line-height:1.7">Os cadastros não substituem os indicadores manuais do dashboard. Use o editor do painel para ajustar o resumo.</p>`;
+            `<div id="sales-simulator">${simulationBanner()}</div><div class="module-toolbar"><input class="module-search" placeholder="Buscar cliente ou pedido…" value="${esc(filter)}" aria-label="Filtrar pedidos"><button class="secondary-button" data-action="export-orders">${icon("download")}Exportar CSV</button></div><div id="orders-list">${orderList()}</div><p class="muted" style="margin-top:16px;line-height:1.7">Pedidos de demonstração são identificados como Simulação. No simulador, você escolhe se eles movimentam os indicadores do dashboard.</p>`;
         } else if (view === "suppliers") {
           const list = filtered(state.suppliers);
           html =
@@ -2412,6 +2952,7 @@
             "</div>";
         box.innerHTML = html;
         hydrate(box);
+        refreshSimulationDock();
         const search = $(".module-search", box);
         if (search)
           search.addEventListener("input", (e) => {
@@ -2553,6 +3094,13 @@
           html,
           (data) => {
             const item = { id: r.id || id() };
+            if (type === "orders" && r.simulated)
+              Object.assign(item, {
+                simulated: true,
+                includeMetrics: r.includeMetrics,
+                simulationBatch: r.simulationBatch,
+                createdAt: r.createdAt,
+              });
             for (const [k, v] of data.entries())
               item[k] = ["price", "stock", "quantity", "amount"].includes(k)
                 ? numeric(v)
@@ -2649,7 +3197,7 @@
         toast("Arquivo exportado.");
       }
       function report() {
-        const m = metrics();
+        const m = displayMetrics();
         csv(`relatorio-${periodName()}-${day()}.csv`, [
           ["Indicador", "Valor", "Período"],
           ["Faturamento Total", m.revenue, periodName()],
@@ -2658,6 +3206,11 @@
           ["Itens Despachados", m.shipped, periodName()],
           ["Pedidos hoje", m.today, periodName()],
           ["Total acumulado", m.total, periodName()],
+          [
+            "Pedidos de simulação incluídos",
+            simulationOrdersFor().length,
+            periodName(),
+          ],
           ...statuses.map(([k, v]) => [v, m.status[k], periodName()]),
         ]);
       }
@@ -2822,6 +3375,8 @@
             "Restaurar backup?",
             `<p class="dialog-description">O backup de <strong>${esc(incoming.name)}</strong> tem ${incoming.products.length} produtos e ${incoming.orders.length} pedidos. Ele substituirá todos os dados deste navegador.</p>`,
             () => {
+              stopSimulation();
+              simulation = null;
               state = incoming;
               persist();
               navigate("dashboard");
@@ -2844,9 +3399,455 @@
           },
         );
       }
+      // Simulation orders are derived additions: clearing them restores manual metrics exactly.
+      let simulation = null,
+        simulationTimer = null,
+        saleAudio = null,
+        orderLimit = 50;
+      const simulatedOrders = () => state.orders.filter((o) => o.simulated);
+      function simulationOrdersFor(p = period) {
+        const today = new Date(day() + "T12:00:00"),
+          start = new Date(today);
+        start.setDate(start.getDate() - p + 1);
+        return state.orders.filter(
+          (o) =>
+            o.simulated &&
+            o.includeMetrics &&
+            new Date(o.date + "T12:00:00") >= start &&
+            new Date(o.date + "T12:00:00") <= today,
+        );
+      }
+      function displayMetrics() {
+        const base = metrics(),
+          m = JSON.parse(JSON.stringify(base)),
+          orders = simulationOrdersFor();
+        if (!orders.length) return m;
+        const revenueStatuses = [
+          "paid",
+          "printed",
+          "shipped",
+          "posted",
+          "delivered",
+        ];
+        const paid = orders.filter((o) => revenueStatuses.includes(o.status));
+        const extra = paid.reduce((sum, o) => sum + o.amount, 0);
+        m.revenue = Math.round((m.revenue + extra) * 100) / 100;
+        m.total = Math.round((m.total + extra) * 100) / 100;
+        m.orders += orders.length;
+        m.today += orders.filter((o) => o.date === day()).length;
+        m.shipped += orders
+          .filter((o) => ["shipped", "posted", "delivered"].includes(o.status))
+          .reduce((sum, o) => sum + o.quantity, 0);
+        m.ticket = m.orders
+          ? Math.round((m.revenue / m.orders) * 100) / 100
+          : 0;
+        orders.forEach((o) => m.status[o.status]++);
+        // Keep the manual chart intact and add simulated revenue to its actual day/month.
+        const count = period === 365 ? 12 : period;
+        if (!m.series.length) {
+          const weights = Array.from(
+              { length: count },
+              (_, i) => 1 + Math.sin(i * 1.7) * 0.35 + (i / count) * 0.3,
+            ),
+            sum = weights.reduce((a, b) => a + b, 0);
+          m.series = weights.map((w) => (base.total * w) / sum);
+        }
+        paid.forEach((o) => {
+          const when = new Date(o.date + "T12:00:00"),
+            now = new Date(day() + "T12:00:00");
+          const offset =
+            period === 365
+              ? (now.getFullYear() - when.getFullYear()) * 12 +
+                now.getMonth() -
+                when.getMonth()
+              : Math.round((now - when) / 86400000);
+          const index = count - 1 - offset;
+          if (index >= 0 && index < count)
+            m.series[index] = (m.series[index] || 0) + o.amount;
+        });
+        return m;
+      }
+      function simulationBanner() {
+        const running = simulation?.phase === "running",
+          paused = simulation?.phase === "paused",
+          hasRun = !!simulation;
+        const all = simulatedOrders(),
+          progress = hasRun
+            ? (simulation.created / simulation.target) * 100
+            : 0;
+        const phase = running
+          ? "SIMULAÇÃO AO VIVO"
+          : paused
+            ? "SIMULAÇÃO PAUSADA"
+            : hasRun
+              ? "LOTE " +
+                (simulation.phase === "done" ? "CONCLUÍDO" : "ENCERRADO")
+              : "MODO DEMONSTRAÇÃO";
+        return `<div class="sim-banner ${running ? "is-running" : ""}"><div class="sim-banner-top"><div class="sim-identity"><span class="sim-symbol">${icon("trend")}</span><div><span class="sim-eyebrow"><b></b>${phase}</span><h2>${hasRun ? (running ? "As vendas estão chegando." : paused ? "Uma pausa no movimento." : "Seu lote está pronto.") : "Dê movimento à sua operação."}</h2><p>${hasRun ? "Pedidos fictícios, com os dados salvos neste navegador." : "Crie um lote ou acompanhe pedidos de demonstração entrando, um a um."}</p></div></div><div class="sim-controls">${running || paused ? `<button class="secondary-button" data-action="sim-pause">${running ? "Ⅱ Pausar" : "▷ Continuar"}</button><button class="secondary-button" data-action="sim-stop">Encerrar</button><button class="text-button" data-action="sim-sound">${simulation.options.sound ? "♫ Som ativado" : "♪ Som desativado"}</button>` : `<button class="yellow-button" data-action="simulate-sales">${icon("plus")}Simular vendas</button>`}${all.length && !running && !paused ? '<button class="text-button" data-action="sim-clear">Limpar simulações</button>' : ""}</div></div><div class="sim-bottom"><div class="sim-facts"><span><strong>${integer(hasRun ? simulation.created : all.length)}</strong> ${hasRun ? "de " + integer(simulation.target) + " pedidos" : "pedidos simulados"}</span><span><strong>${money(hasRun ? simulation.total : all.reduce((s, o) => s + o.amount, 0))}</strong> ${hasRun ? "neste lote" : "em demonstração"}</span><span class="sim-speed">${hasRun ? (simulation.interval ? `1 pedido a cada ${simulation.interval / 1000}s` : "Lote instantâneo") : "Escolha a quantidade, os valores e o ritmo"}</span></div><div class="sim-mini-bars" aria-hidden="true">${Array.from({ length: 16 }, (_, i) => `<i style="--h:${20 + ((i * 37) % 80)}%;--delay:${i * 0.08}s"></i>`).join("")}</div></div>${hasRun ? `<div class="sim-progress" role="progressbar" aria-label="Pedidos simulados criados" aria-valuemin="0" aria-valuemax="${simulation.target}" aria-valuenow="${simulation.created}"><span style="width:${progress}%"></span></div>` : ""}</div>`;
+      }
+      function orderList() {
+        const list = state.orders.filter((o) =>
+          Object.values(o)
+            .join(" ")
+            .toLowerCase()
+            .includes(filter.toLowerCase()),
+        );
+        return `<div class="panel table-wrap">${list.length ? orderRows(list.slice(0, orderLimit), true) : empty("cart", "Nenhum pedido encontrado", "Adicione seu primeiro pedido ou experimente o simulador de vendas.")}</div>${list.length > orderLimit ? `<div class="orders-pagination"><span class="muted">Mostrando ${orderLimit} de ${integer(list.length)} pedidos</span><button class="secondary-button" data-action="orders-more">Carregar mais 50</button></div>` : ""}`;
+      }
+      function refreshSimulationView() {
+        if (view === "orders") {
+          const active = document.activeElement?.dataset.action;
+          const banner = $("#sales-simulator");
+          if (banner) banner.innerHTML = simulationBanner();
+          const list = $("#orders-list");
+          if (list) list.innerHTML = orderList();
+          if (active && active.startsWith("sim-"))
+            $(`[data-action="${active}"]`)?.focus({ preventScroll: true });
+        }
+      }
+      function openSimulation() {
+        if (simulation && ["running", "paused"].includes(simulation.phase)) {
+          navigate("orders");
+          return;
+        }
+        showDialog(
+          "Vamos movimentar esse painel.",
+          `<div class="sim-modal-intro"><span class="badge">SIMULADOR DE VENDAS</span><p>Um lote inteiro, no seu ritmo. Produtos, clientes e notificações de demonstração para testar sua operação.</p></div><div class="sim-presets"><span>Lote rápido</span>${[10, 30, 100].map((n, i) => `<button type="button" class="${i === 1 ? "selected" : ""}" data-sim-preset="${n}">${n} pedidos</button>`).join("")}</div><div class="form-grid">${field("Quantidade de pedidos", "batchCount", 30, "number", 'required min="1" max="500" step="1"')}${selectField(
+            "Ritmo de entrada",
+            "batchInterval",
+            [
+              [0, "Todos de uma vez"],
+              [500, "Turbo · a cada 0,5 segundo"],
+              [1500, "Ao vivo · a cada 1,5 segundo"],
+              [3000, "Tranquilo · a cada 3 segundos"],
+            ],
+            1500,
+          )}${numField("Valor mínimo por pedido (R$)", "batchMin", 49.9, true)}${numField("Valor máximo por pedido (R$)", "batchMax", 299.9, true)}${selectField(
+            "Status dos pedidos",
+            "batchStatus",
+            [
+              ["paid", "Pagos"],
+              ["shipped", "Despachados"],
+              ["delivered", "Entregues"],
+              ["mix", "Misturar etapas da operação"],
+            ],
+            "paid",
+          )}${selectField("Produtos", "batchProducts", [["random", "Valores aleatórios"], ...(state.products.length ? [["catalog", "Usar preços do meu catálogo"]] : [])], "random")}</div><div class="sim-options"><label><input type="checkbox" name="batchMetrics" checked><span><strong>Movimentar os indicadores do dashboard</strong><small>Soma os pedidos simulados ao resumo, sem alterar seus valores manuais.</small></span></label><label><input type="checkbox" name="batchSound"><span><strong>Som de nova venda</strong><small>Um toque curto a cada entrada. Você pode silenciar durante a simulação.</small></span></label></div><div class="sim-estimate" id="sim-estimate"></div>`,
+          (data) => {
+            const count = Number(data.get("batchCount")),
+              interval = Number(data.get("batchInterval")),
+              min = numeric(data.get("batchMin")),
+              max = numeric(data.get("batchMax"));
+            if (
+              !Number.isInteger(count) ||
+              count < 1 ||
+              count > 500 ||
+              ![0, 500, 1500, 3000].includes(interval)
+            ) {
+              toast("Escolha de 1 a 500 pedidos e um ritmo disponível.");
+              return false;
+            }
+            if (min > max) {
+              toast("O valor máximo precisa ser maior ou igual ao mínimo.");
+              return false;
+            }
+            if (state.orders.length + count > 10000) {
+              toast(
+                "O limite é de 10.000 pedidos. Exporte um backup e libere espaço antes de continuar.",
+              );
+              return false;
+            }
+            const options = {
+              count,
+              interval,
+              min,
+              max,
+              status: String(data.get("batchStatus")),
+              catalog: data.get("batchProducts") === "catalog",
+              metrics: data.has("batchMetrics"),
+              sound: data.has("batchSound"),
+            };
+            if (options.catalog && !state.products.length) {
+              toast("Adicione um produto ao catálogo primeiro.");
+              return false;
+            }
+            if (options.sound) enableSaleAudio();
+            // Start after the configuration dialog has closed.
+            setTimeout(() => startSimulation(options), 0);
+            return true;
+          },
+          "Iniciar simulação",
+        );
+        const preview = () => {
+          const f = $("#dialog-form").elements,
+            count = numeric(f.batchCount.value),
+            interval = Number(f.batchInterval.value),
+            value =
+              ((numeric(f.batchMin.value) + numeric(f.batchMax.value)) / 2) *
+              count;
+          $("#sim-estimate").innerHTML =
+            `<div><span>Projeção do lote</span><strong>${money(value)}</strong></div><div><span>Tempo estimado</span><strong>${interval ? Math.ceil((Math.max(0, count - 1) * interval) / 1000) + "s" : "Instantâneo"}</strong></div><small>Estimativa com valores aleatórios. O resultado do lote pode variar.</small>`;
+          $$("[data-sim-preset]").forEach((b) =>
+            b.classList.toggle(
+              "selected",
+              Number(b.dataset.simPreset) === count,
+            ),
+          );
+        };
+        $("#dialog-body").oninput = preview;
+        $$("[data-sim-preset]").forEach(
+          (b) =>
+            (b.onclick = () => {
+              $("#dialog-form").elements.batchCount.value = b.dataset.simPreset;
+              preview();
+            }),
+        );
+        preview();
+      }
+      function enableSaleAudio() {
+        try {
+          const Audio = window.AudioContext || window.webkitAudioContext;
+          if (!Audio) return;
+          saleAudio ||= new Audio();
+          saleAudio.resume().catch(() => {});
+        } catch {}
+      }
+      function saleChime() {
+        if (
+          !simulation?.options.sound ||
+          !saleAudio ||
+          saleAudio.state !== "running"
+        )
+          return;
+        try {
+          [880, 1318].forEach((frequency, i) => {
+            const oscillator = saleAudio.createOscillator(),
+              gain = saleAudio.createGain(),
+              at = saleAudio.currentTime + i * 0.085;
+            oscillator.type = "sine";
+            oscillator.frequency.value = frequency;
+            gain.gain.setValueAtTime(0, at);
+            gain.gain.linearRampToValueAtTime(0.065, at + 0.01);
+            gain.gain.exponentialRampToValueAtTime(0.001, at + 0.16);
+            oscillator.connect(gain);
+            gain.connect(saleAudio.destination);
+            oscillator.start(at);
+            oscillator.stop(at + 0.18);
+          });
+        } catch {}
+      }
+      function makeSimulatedOrder(options, batchId) {
+        const names = [
+          "Ana Souza",
+          "Lucas Almeida",
+          "Mariana Costa",
+          "Pedro Santos",
+          "Beatriz Lima",
+          "Rafael Oliveira",
+          "Camila Rocha",
+          "Gabriel Martins",
+          "Juliana Alves",
+          "Bruno Ferreira",
+          "Larissa Melo",
+          "Felipe Ribeiro",
+          "Isabela Dias",
+          "Thiago Carvalho",
+          "Letícia Gomes",
+          "André Moreira",
+        ];
+        const product = options.catalog
+          ? state.products[Math.floor(Math.random() * state.products.length)]
+          : null;
+        const status =
+          options.status === "mix"
+            ? ["paid", "paid", "paid", "shipped", "posted", "delivered"][
+                Math.floor(Math.random() * 6)
+              ]
+            : options.status;
+        return {
+          id: id(),
+          customer: names[Math.floor(Math.random() * names.length)],
+          date: day(),
+          createdAt: new Date().toISOString(),
+          productId: product?.id || "",
+          quantity: 1,
+          amount: product
+            ? product.price
+            : Math.round(
+                (options.min + Math.random() * (options.max - options.min)) *
+                  100,
+              ) / 100,
+          status,
+          simulated: true,
+          includeMetrics: options.metrics,
+          simulationBatch: batchId,
+        };
+      }
+      function startSimulation(options) {
+        clearTimeout(simulationTimer);
+        simulation = {
+          batchId: id(),
+          target: options.count,
+          created: 0,
+          total: 0,
+          interval: options.interval,
+          phase: "running",
+          options,
+        };
+        orderLimit = 50;
+        if (view !== "orders") navigate("orders");
+        else renderModule();
+        if (!options.interval) {
+          const orders = Array.from({ length: options.count }, () =>
+            makeSimulatedOrder(options, simulation.batchId),
+          );
+          state.orders.unshift(...orders);
+          simulation.created = orders.length;
+          simulation.total = orders.reduce((sum, o) => sum + o.amount, 0);
+          simulation.phase = "done";
+          persist();
+          refreshSimulationView();
+          saleNotification(orders[orders.length - 1], true);
+          finishSimulation();
+          return;
+        }
+        simulationTick();
+      }
+      function simulationTick() {
+        if (simulation?.phase !== "running") return;
+        if (state.orders.length >= 10000) {
+          stopSimulation();
+          toast("Limite de 10.000 pedidos atingido.");
+          return;
+        }
+        if (simulation.options.catalog && !state.products.length) {
+          stopSimulation();
+          toast("Simulação encerrada: o catálogo está vazio.");
+          return;
+        }
+        const order = makeSimulatedOrder(
+          simulation.options,
+          simulation.batchId,
+        );
+        state.orders.unshift(order);
+        simulation.created++;
+        simulation.total =
+          Math.round((simulation.total + order.amount) * 100) / 100;
+        if (simulation.created >= simulation.target) simulation.phase = "done";
+        persist();
+        refreshSimulationView();
+        saleNotification(order);
+        saleChime();
+        if (!storageOK) {
+          stopSimulation();
+          return;
+        }
+        if (simulation.phase === "done") {
+          finishSimulation();
+          return;
+        }
+        simulationTimer = setTimeout(simulationTick, simulation.interval);
+      }
+      function pauseSimulation() {
+        if (!simulation) return;
+        if (simulation.phase === "running") {
+          clearTimeout(simulationTimer);
+          simulation.phase = "paused";
+        } else if (simulation.phase === "paused") {
+          simulation.phase = "running";
+          simulationTimer = setTimeout(simulationTick, simulation.interval);
+        }
+        refreshSimulationView();
+        refreshSimulationDock();
+      }
+      function stopSimulation() {
+        clearTimeout(simulationTimer);
+        if (simulation && ["running", "paused"].includes(simulation.phase))
+          simulation.phase = "stopped";
+        refreshSimulationView();
+        refreshSimulationDock();
+      }
+      function refreshSimulationDock() {
+        const dock = $("#simulation-dock");
+        if (!simulation || !["running", "paused"].includes(simulation.phase)) {
+          dock.hidden = true;
+          return;
+        }
+        dock.hidden = view === "orders";
+        dock.innerHTML = `<button data-navigate="orders"><span class="sim-live-dot"></span><span>Simulação ${simulation.phase === "paused" ? "pausada" : "ao vivo"}<small>${simulation.created} / ${simulation.target} pedidos · ${money(simulation.total)}</small></span></button><button class="icon-button" data-action="sim-pause" aria-label="${simulation.phase === "paused" ? "Continuar simulação" : "Pausar simulação"}">${simulation.phase === "paused" ? "▷" : "Ⅱ"}</button>`;
+      }
+      function saleNotification(order, bulk = false) {
+        const feed = $("#sales-feed"),
+          card = document.createElement("div");
+        card.className = "sale-notification";
+        card.innerHTML = `<span class="sale-check">${icon("check")}</span><div><span class="sale-notification-label">${bulk ? "LOTE GERADO" : "NOVA VENDA"} <b>SIMULAÇÃO</b></span><strong>${bulk ? integer(simulation.created) + " pedidos criados" : esc(order.customer)}</strong><small>${bulk ? "Todos os pedidos já estão na sua lista." : "#" + esc(order.id.slice(0, 8).toUpperCase()) + " · " + esc(statusName(order.status))}</small></div><strong class="sale-amount">${money(bulk ? simulation.total : order.amount)}</strong>`;
+        feed.prepend(card);
+        while (feed.children.length > 3) feed.lastElementChild.remove();
+        setTimeout(() => card.remove(), 4200);
+        refreshSimulationDock();
+      }
+      function finishSimulation() {
+        clearTimeout(simulationTimer);
+        refreshSimulationDock();
+        toast(
+          `Lote concluído: ${integer(simulation.created)} pedidos simulados · ${money(simulation.total)}`,
+        );
+        if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+        const burst = document.createElement("div");
+        burst.className = "sim-celebration";
+        burst.setAttribute("aria-hidden", "true");
+        burst.innerHTML = Array.from(
+          { length: 24 },
+          (_, i) =>
+            `<i style="--x:${15 + Math.random() * 70}vw;--drift:${(Math.random() - 0.5) * 240}px;--delay:${i * 0.025}s;--color:${["#f7e500", "#3be79b", "#fff"][i % 3]}"></i>`,
+        ).join("");
+        document.body.append(burst);
+        setTimeout(() => burst.remove(), 2000);
+      }
+      function clearSimulations() {
+        const count = simulatedOrders().length;
+        if (!count) {
+          toast("Não há simulações para remover.");
+          return;
+        }
+        showDialog(
+          "Limpar pedidos simulados?",
+          `<p class="dialog-description">Serão removidos <strong>${integer(count)} pedidos de demonstração</strong> e suas contribuições nos indicadores. Seus pedidos cadastrados e os valores manuais do painel serão preservados.</p>`,
+          () => {
+            stopSimulation();
+            state.orders = state.orders.filter((o) => !o.simulated);
+            simulation = null;
+            $("#sales-feed").replaceChildren();
+            persist();
+            renderModule();
+            toast("Simulações removidas. Dados manuais preservados.");
+            return true;
+          },
+          "Limpar simulações",
+        );
+      }
+      window.addEventListener("pagehide", () => {
+        clearTimeout(simulationTimer);
+        saleAudio?.close().catch(() => {});
+      });
+
       const actions = {
         "new-product": () => editRecord("products"),
         "new-order": () => editRecord("orders"),
+        "simulate-sales": openSimulation,
+        "sim-pause": pauseSimulation,
+        "sim-stop": stopSimulation,
+        "sim-sound": () => {
+          if (!simulation) return;
+          simulation.options.sound = !simulation.options.sound;
+          if (simulation.options.sound) enableSaleAudio();
+          refreshSimulationView();
+        },
+        "sim-clear": clearSimulations,
+        "orders-more": () => {
+          orderLimit += 50;
+          refreshSimulationView();
+        },
         "new-supplier": () => editRecord("suppliers"),
         "new-transaction": () => editRecord("transactions"),
         "new-integration": () => editRecord("integrations"),
@@ -2874,7 +3875,15 @@
           ]),
         "export-orders": () =>
           csv("pedidos.csv", [
-            ["pedido", "cliente", "data", "quantidade", "valor", "status"],
+            [
+              "pedido",
+              "cliente",
+              "data",
+              "quantidade",
+              "valor",
+              "status",
+              "origem",
+            ],
             ...state.orders.map((o) => [
               o.id,
               o.customer,
@@ -2882,6 +3891,7 @@
               o.quantity,
               o.amount,
               statusName(o.status),
+              o.simulated ? "Simulação" : "Cadastro",
             ]),
           ]),
         "export-finance": () =>
@@ -3133,6 +4143,7 @@
       window.addEventListener("resize", renderChart);
       window.addEventListener("storage", (e) => {
         if (e.key === KEY && !$("#dialog").open) {
+          stopSimulation();
           state = load();
           renderDashboard();
           renderModule();

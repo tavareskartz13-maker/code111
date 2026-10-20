@@ -24,7 +24,17 @@ Você pode modificar:
 - Pedidos hoje e os nove status da operação.
 - Total acumulado e valores diários ou mensais do gráfico.
 
-Os períodos **7d, 30d e 12m** guardam indicadores independentes. Selecione o período antes de editar. O botão de cálculo do ticket divide o faturamento pelos pedidos. Uma série manual precisa ter 7, 30 ou 12 valores, separados por ponto e vírgula ou linha; seu total é calculado automaticamente. Sem série manual, o painel distribui o total em uma curva ilustrativa. Os indicadores manuais são independentes dos pedidos cadastrados.
+Os períodos **7d, 30d e 12m** guardam indicadores independentes. Selecione o período antes de editar. O botão de cálculo do ticket divide o faturamento pelos pedidos. Uma série manual precisa ter 7, 30 ou 12 valores, separados por ponto e vírgula ou linha; seu total é calculado automaticamente. Sem série manual, o painel distribui o total em uma curva ilustrativa. Os indicadores manuais são independentes dos pedidos cadastrados. O simulador pode somar contribuições de demonstração separadamente, sem modificar esses valores originais.
+
+## Simulador de vendas
+
+Na tela **Pedidos**, clique em **Simular vendas**. Escolha de **1 a 500 pedidos**, informe a faixa de valores ou use os preços do catálogo, selecione os status e o ritmo: lote instantâneo, 0,5s, 1,5s ou 3s por pedido. Os atalhos preenchem lotes de 10, 30 ou 100 pedidos.
+
+Durante a entrada em sequência, é possível pausar, continuar, encerrar e ligar/desligar o som. As notificações mostram cada nova entrada, a barra acompanha o progresso e o lote concluído tem um efeito visual que respeita a preferência por movimento reduzido. É possível navegar para o dashboard enquanto o simulador está rodando e acompanhar o progresso no controle flutuante. Fechar ou recarregar a página interrompe a geração; pedidos já criados ficam salvos.
+
+Os pedidos gerados têm identificação **SIMULAÇÃO**, inclusive no CSV e após recarregar ou restaurar um backup. Por padrão, contribuem para os indicadores, gráfico e status da operação. É possível desmarcar essa opção na configuração do lote. As contribuições são calculadas separadamente dos valores manuais. **Limpar simulações** remove os pedidos fictícios e essas contribuições, preservando os pedidos cadastrados manualmente e os valores originais do editor. Alterar o status de um pedido simulado recalcula sua contribuição. A simulação não movimenta estoque nem processa pagamentos.
+
+O total de receita inclui pedidos simulados pagos, impressos, despachados, postados e entregues. Todos os status contam como pedidos; itens despachados incluem despachados, postados e entregues. O ticket é recalculado quando há simulações incluídas no período. A lista exibe até 50 registros por vez, com opção de carregar mais.
 
 ## Recursos
 
@@ -51,6 +61,7 @@ O teste em `tests/smoke.cjs` usa Node.js, Playwright e Chromium. No ambiente de 
 ```sh
 node tests/smoke.cjs
 node tests/standalone.cjs
+node tests/simulation.cjs
 ```
 
 É possível definir `TEST_URL` e `CHROMIUM_PATH`. O teste usa um navegador isolado e não altera os dados do seu navegador pessoal. Verifica edição e persistência dos indicadores, independência dos períodos, gráfico, cadastro de produtos e pedidos, importação/exportação, financeiro, fornecedores, canais, chamados, cálculo de margem, temas, backup/restauração, exclusão e uso no celular.
