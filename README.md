@@ -28,7 +28,7 @@ Os períodos **7d, 30d e 12m** guardam indicadores independentes. Selecione o pe
 
 ## Simulador de vendas
 
-Na tela **Pedidos**, clique em **Simular vendas**. Escolha de **1 a 500 pedidos**, informe a faixa de valores ou use os preços do catálogo, selecione os status e o ritmo: lote instantâneo, 0,5s, 1,5s ou 3s por pedido. Os atalhos preenchem lotes de 10, 30 ou 100 pedidos.
+Na tela **Pedidos**, clique em **Simular vendas**. Escolha de **1 a 500 pedidos**, informe a faixa de valores ou use os preços do catálogo, selecione os status e o ritmo: lote instantâneo, 0,5s, 1,5s, 3s ou **5s por pedido (padrão)**. Os atalhos preenchem lotes de 10, 30 ou 100 pedidos.
 
 Durante a entrada em sequência, é possível pausar, continuar, encerrar e ligar/desligar o som. As notificações mostram cada nova entrada, a barra acompanha o progresso e o lote concluído tem um efeito visual que respeita a preferência por movimento reduzido. É possível navegar para o dashboard enquanto o simulador está rodando e controlar a execução pelo **olhinho no canto superior esquerdo → Simulador de vendas**. Essa seção fica recolhida dentro do editor, sem controle flutuante sobre o dashboard. Os botões de pausa e retomada também continuam no quadro do simulador na tela Pedidos. Fechar ou recarregar a página interrompe a geração; pedidos já criados ficam salvos.
 

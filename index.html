@@ -3475,8 +3475,9 @@
               [500, "Turbo · a cada 0,5 segundo"],
               [1500, "Ao vivo · a cada 1,5 segundo"],
               [3000, "Tranquilo · a cada 3 segundos"],
+              [5000, "Padrão · a cada 5 segundos"],
             ],
-            1500,
+            5000,
           )}${numField("Valor mínimo por pedido (R$)", "batchMin", 49.9, true)}${numField("Valor máximo por pedido (R$)", "batchMax", 299.9, true)}${selectField(
             "Status dos pedidos",
             "batchStatus",
@@ -3497,7 +3498,7 @@
               !Number.isInteger(count) ||
               count < 1 ||
               count > 500 ||
-              ![0, 500, 1500, 3000].includes(interval)
+              ![0, 500, 1500, 3000, 5000].includes(interval)
             ) {
               toast("Escolha de 1 a 500 pedidos e um ritmo disponível.");
               return false;

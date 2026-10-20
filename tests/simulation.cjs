@@ -236,6 +236,18 @@ const { chromium } = require("playwright");
       await page.locator("#top-products").innerText(),
       /Produto do catálogo/,
     );
+    await nav("orders");
+    await clear();
+    await page.locator('[data-action="simulate-sales"]').click();
+    assert.equal(await dialog.locator('[name="batchInterval"]').inputValue(), "5000");
+    await fill("batchCount",2);
+    await start();
+    assert.equal((await data()).orders.length,2);
+    await page.clock.runFor(4000);
+    assert.equal((await data()).orders.length,2);
+    await page.clock.runFor(1100);
+    assert.equal((await data()).orders.length,3);
+    assert.match(await page.locator("#sales-simulator").innerText(),/LOTE CONCLUÍDO/);
     assert.deepEqual(errors, []);
     console.log(
       "PASS: criação em lote, identificação, totais, status, persistência, entradas em sequência, pausa/retomada, encerramento, preservação dos indicadores manuais, exclusão seletiva, modo sem métricas, paginação, origem no CSV, validação de valores, conclusão e layout móvel.",
