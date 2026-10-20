@@ -1563,19 +1563,6 @@
         background: var(--yellow);
         transition: width 0.4s;
       }
-      .demo-badge {
-        display: inline-flex !important;
-        font-size: 8px !important;
-        font-weight: 600;
-        color: var(--yellow) !important;
-        letter-spacing: 0.4px;
-        background: #f7e5000c;
-        border: 1px solid #f7e50030;
-        padding: 3px 5px;
-        border-radius: 4px;
-        margin: 0 0 0 6px !important;
-        vertical-align: middle;
-      }
       .sim-modal-intro .badge {
         margin-bottom: 12px;
       }
@@ -2230,7 +2217,7 @@
         ["label", "Aguardando etiqueta", "#f5ab16"],
         ["sku", "Vincular SKU", "#f14e59"],
         ["payment", "Aguardando pagamento", "#f5ab16"],
-        ["paid", "Pagos (aguardando impressão)", "#24cc70"],
+        ["paid", "Pago", "#24cc70"],
         ["printed", "Impressos (aguardando despacho)", "#4286ff"],
         ["shipped", "Despachados", "#4286ff"],
         ["posted", "Postados", "#4286ff"],
@@ -2477,7 +2464,7 @@
           ],
           list.map(
             (o) =>
-              `<tr><td><strong>#${esc(o.id.slice(0, 8).toUpperCase())}</strong>${o.simulated ? '<span class="demo-badge">SIMULAÇÃO</span>' : ""}<small>${esc(o.customer)} · ${esc(dateLabel(o.date))}${o.createdAt ? " · " + esc(new Date(o.createdAt).toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit", second: "2-digit" })) : ""}</small></td><td>${money(o.amount)}</td><td><span class="badge">${esc(statusName(o.status))}</span></td>${actions ? `<td>${actionButtons("orders", o)}</td>` : ""}</tr>`,
+              `<tr><td><strong>#${esc(o.id.slice(0, 8).toUpperCase())}</strong><small>${esc(o.customer)} · ${esc(dateLabel(o.date))}${o.createdAt ? " · " + esc(new Date(o.createdAt).toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit", second: "2-digit" })) : ""}</small></td><td>${money(o.amount)}</td><td><span class="badge">${esc(statusName(o.status))}</span></td>${actions ? `<td>${actionButtons("orders", o)}</td>` : ""}</tr>`,
           ),
         );
       }
@@ -2780,7 +2767,7 @@
               "Novo pedido",
               "new-order",
             ) +
-            `<div id="sales-simulator">${simulationBanner()}</div><div class="module-toolbar"><input class="module-search" placeholder="Buscar cliente ou pedido…" value="${esc(filter)}" aria-label="Filtrar pedidos"><button class="secondary-button" data-action="export-orders">${icon("download")}Exportar CSV</button></div><div id="orders-list">${orderList()}</div><p class="muted" style="margin-top:16px;line-height:1.7">Pedidos de demonstração são identificados como Simulação. No simulador, você escolhe se eles movimentam os indicadores do dashboard.</p>`;
+            `<div id="sales-simulator">${simulationBanner()}</div><div class="module-toolbar"><input class="module-search" placeholder="Buscar cliente ou pedido…" value="${esc(filter)}" aria-label="Filtrar pedidos"><button class="secondary-button" data-action="export-orders">${icon("download")}Exportar CSV</button></div><div id="orders-list">${orderList()}</div><p class="muted" style="margin-top:16px;line-height:1.7">Os pedidos criados pelo simulador são salvos neste navegador. No simulador, você escolhe se eles movimentam os indicadores do dashboard.</p>`;
         } else if (view === "suppliers") {
           const list = filtered(state.suppliers);
           html =
@@ -3482,7 +3469,7 @@
             "Status dos pedidos",
             "batchStatus",
             [
-              ["paid", "Pagos"],
+              ["paid", "Pago"],
               ["shipped", "Despachados"],
               ["delivered", "Entregues"],
               ["mix", "Misturar etapas da operação"],

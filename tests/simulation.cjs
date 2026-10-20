@@ -74,7 +74,9 @@ const { chromium } = require("playwright");
       await page.locator("#sales-simulator").innerText(),
       /LOTE CONCLUÍDO/,
     );
-    assert.equal(await page.locator("#orders-list .demo-badge").count(), 10);
+    assert.equal(await page.locator("#orders-list .demo-badge").count(), 0);
+    assert.equal((await page.locator("#orders-list .badge").allTextContents()).filter(label=>label==='Pago').length,10);
+    assert.doesNotMatch(await page.locator("#orders-list").innerText(),/SIMULAÇÃO|aguardando impressão/i);
     await nav("dashboard");
     assert.match(
       await page.locator("#metric-revenue").innerText(),
