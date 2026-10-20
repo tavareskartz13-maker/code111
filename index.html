@@ -1720,15 +1720,6 @@
         margin-bottom: 7px;
         font-weight: 650;
       }
-      .sale-notification-label b {
-        font-size: 6px;
-        border: 1px solid var(--line);
-        border-radius: 3px;
-        margin-left: 5px;
-        padding: 2px 3px;
-        color: var(--muted);
-        font-weight: 500;
-      }
       .sale-notification > div > strong {
         display: block;
         font-size: 12px;
@@ -3752,7 +3743,7 @@
         const feed = $("#sales-feed"),
           card = document.createElement("div");
         card.className = "sale-notification";
-        card.innerHTML = `<span class="sale-check">${icon("check")}</span><div><span class="sale-notification-label">${bulk ? "LOTE GERADO" : "NOVA VENDA"} <b>SIMULAÇÃO</b></span><strong>${bulk ? integer(simulation.created) + " pedidos criados" : esc(order.customer)}</strong><small>${bulk ? "Todos os pedidos já estão na sua lista." : "#" + esc(order.id.slice(0, 8).toUpperCase()) + " · " + esc(statusName(order.status))}</small></div><strong class="sale-amount">${money(bulk ? simulation.total : order.amount)}</strong>`;
+        card.innerHTML = `<span class="sale-check">${icon("check")}</span><div><span class="sale-notification-label">${bulk ? "LOTE GERADO" : "NOVA VENDA"}</span><strong>${bulk ? integer(simulation.created) + " pedidos criados" : esc(order.customer)}</strong><small>${bulk ? "Todos os pedidos já estão na sua lista." : "#" + esc(order.id.slice(0, 8).toUpperCase()) + " · " + esc(statusName(order.status))}</small></div><strong class="sale-amount">${money(bulk ? simulation.total : order.amount)}</strong>`;
         feed.prepend(card);
         while (feed.children.length > 3) feed.lastElementChild.remove();
         setTimeout(() => card.remove(), 4200);

@@ -193,6 +193,7 @@ const { chromium } = require("playwright");
       /LOTE CONCLUÍDO/,
     );
     assert.equal((await page.locator(".sale-notification").count()) <= 3, true);
+    assert.equal(await page.locator('.sale-notification').filter({hasText:/simulação/i}).count(),0);
     await page.setViewportSize({ width: 390, height: 844 });
     assert.equal(
       await page.evaluate(
