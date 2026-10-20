@@ -91,6 +91,7 @@ const { chromium } = require("playwright");
       /1\.500,00/,
     );
     assert.equal((await data()).orders.filter((o) => o.simulated).length, 10);
+    assert.equal(await page.locator("#simulation-dashboard-note").count(), 0);
     await nav("orders");
     await configure(5, 500, 20, 20);
     await start();
