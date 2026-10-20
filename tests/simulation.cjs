@@ -99,16 +99,39 @@ const { chromium } = require("playwright");
     await page.clock.runFor(3000);
     assert.equal((await data()).orders.length, 12);
     await nav("dashboard");
-    assert.equal(await page.locator("#simulation-dock").isVisible(), true);
+    assert.equal(await page.locator("#simulation-dock").count(), 0);
+    assert.equal(
+      await page
+        .getByRole("button", { name: "Continuar simulação", exact: true })
+        .isVisible(),
+      false,
+    );
     await page
+      .getByRole("button", { name: "Personalizar painel", exact: true })
+      .click();
+    assert.equal(
+      await page.locator(".simulation-settings").getAttribute("open"),
+      null,
+    );
+    await page.locator(".simulation-settings summary").click();
+    await dialog
       .getByRole("button", { name: "Continuar simulação", exact: true })
       .click();
     await page.clock.runFor(550);
     assert.equal((await data()).orders.length, 13);
+    await dialog
+      .getByRole("button", { name: "Pausar simulação", exact: true })
+      .click();
+    await page.clock.runFor(1000);
+    assert.equal((await data()).orders.length, 13);
+    await dialog
+      .getByRole("button", { name: "Continuar simulação", exact: true })
+      .click();
+    await page.locator("#dialog-close").click();
     await nav("orders");
     await page.locator('[data-action="sim-sound"]').click();
     await page.locator('[data-action="sim-sound"]').click();
-    await page.locator('[data-action="sim-stop"]').click();
+    await page.locator('#sales-simulator [data-action="sim-stop"]').click();
     await page.clock.runFor(3000);
     assert.equal((await data()).orders.length, 13);
     await clear();

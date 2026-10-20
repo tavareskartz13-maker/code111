@@ -1761,37 +1761,33 @@
         letter-spacing: -0.5px;
         white-space: nowrap;
       }
-      .simulation-dock {
-        position: fixed;
-        bottom: 18px;
-        left: calc(var(--sidebar) + 24px);
-        z-index: 30;
-        display: flex;
-        gap: 10px;
-        padding: 10px;
-        border: 1px solid #f7e50050;
-        border-radius: 13px;
-        background: var(--surface);
-        box-shadow: 0 10px 40px #0006;
+      .simulation-settings {
+        margin: 0 0 22px;
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        background: var(--input);
       }
-      .simulation-dock > button:first-child {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        background: transparent;
-        text-align: left;
+      .simulation-settings summary {
+        padding: 12px 14px;
         font-size: 11px;
-      }
-      .simulation-dock small {
-        display: block;
         color: var(--muted);
-        font-size: 9px;
-        margin-top: 4px;
+        cursor: pointer;
       }
-      .simulation-dock .icon-button {
-        width: 32px;
-        height: 32px;
-        border-radius: 8px;
+      .simulation-settings[open] summary {
+        border-bottom: 1px solid var(--line);
+      }
+      .simulation-settings-body {
+        padding: 14px;
+      }
+      .simulation-settings-body p {
+        font-size: 11px;
+        line-height: 1.7;
+        margin-bottom: 12px;
+      }
+      .simulation-settings-actions {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
       }
       .sim-celebration {
         position: fixed;
@@ -1905,11 +1901,6 @@
         .sale-notification {
           padding: 13px;
           gap: 9px;
-        }
-        .simulation-dock {
-          bottom: 65px;
-          left: 15px;
-          max-width: calc(100% - 30px);
         }
         .sim-presets {
           gap: 5px;
@@ -2177,7 +2168,6 @@
       aria-label="Notificações de vendas simuladas"
       aria-live="polite"
     ></div>
-    <div class="simulation-dock" id="simulation-dock" hidden></div>
     <script>
       "use strict";
       const $ = (s, root = document) => root.querySelector(s),
@@ -2702,7 +2692,7 @@
         const m = metrics();
         showDialog(
           `Personalizar painel · ${periodName()}`,
-          `<p class="dialog-description">Ajuste os indicadores do período selecionado. As alterações ficam salvas somente neste navegador. Os valores manuais são preservados. Pedidos do simulador podem ser somados separadamente ao resumo e removidos depois.</p><div class="form-grid">${numField("Faturamento Total (R$)", "revenue", m.revenue, true)}${numField("Pedidos no Período", "orders", m.orders)}${numField("Ticket Médio (R$)", "ticket", m.ticket, true)}${numField("Itens Despachados", "shipped", m.shipped)}${numField("Pedidos hoje", "today", m.today)}${numField("Total acumulado do gráfico (R$)", "total", m.total, true)}<button type="button" class="inline-action full-width" id="calculate-ticket">Calcular ticket pelo faturamento ÷ pedidos</button></div><fieldset class="form-section"><legend>Status da operação</legend><div class="form-grid">${statuses.map(([k, label]) => numField(label, `status_${k}`, m.status[k])).join("")}</div></fieldset><fieldset class="form-section"><legend>Faturamento e Performance</legend><label class="field">Valores ${period === 365 ? "mensais" : "diários"} do gráfico (opcional)<textarea name="series" placeholder="0,00; 150,00; 220,00">${esc(m.series.join("; "))}</textarea><small>Separe por ponto e vírgula ou por linha. Informe ${period === 365 ? 12 : period} valores. O total acumulado será a soma da série. Deixe vazio para distribuir o total automaticamente.</small></label></fieldset>`,
+          `<p class="dialog-description">Ajuste os indicadores do período selecionado. As alterações ficam salvas somente neste navegador. Os valores manuais são preservados. Pedidos do simulador podem ser somados separadamente ao resumo e removidos depois.</p><details class="simulation-settings"><summary>Simulador de vendas</summary><div class="simulation-settings-body" id="simulation-editor-controls">${simulationControlMarkup()}</div></details><div class="form-grid">${numField("Faturamento Total (R$)", "revenue", m.revenue, true)}${numField("Pedidos no Período", "orders", m.orders)}${numField("Ticket Médio (R$)", "ticket", m.ticket, true)}${numField("Itens Despachados", "shipped", m.shipped)}${numField("Pedidos hoje", "today", m.today)}${numField("Total acumulado do gráfico (R$)", "total", m.total, true)}<button type="button" class="inline-action full-width" id="calculate-ticket">Calcular ticket pelo faturamento ÷ pedidos</button></div><fieldset class="form-section"><legend>Status da operação</legend><div class="form-grid">${statuses.map(([k, label]) => numField(label, `status_${k}`, m.status[k])).join("")}</div></fieldset><fieldset class="form-section"><legend>Faturamento e Performance</legend><label class="field">Valores ${period === 365 ? "mensais" : "diários"} do gráfico (opcional)<textarea name="series" placeholder="0,00; 150,00; 220,00">${esc(m.series.join("; "))}</textarea><small>Separe por ponto e vírgula ou por linha. Informe ${period === 365 ? 12 : period} valores. O total acumulado será a soma da série. Deixe vazio para distribuir o total automaticamente.</small></label></fieldset>`,
           (data) => {
             const raw = String(data.get("series")).trim(),
               pieces = raw
@@ -2779,7 +2769,7 @@
         renderNav();
         if (next === "tools") $(".tool-submenu").hidden = false;
         renderModule();
-        refreshSimulationDock();
+        refreshSimulationControls();
         window.scrollTo(0, 0);
       }
       function renderModule() {
@@ -2952,7 +2942,7 @@
             "</div>";
         box.innerHTML = html;
         hydrate(box);
-        refreshSimulationDock();
+        refreshSimulationControls();
         const search = $(".module-search", box);
         if (search)
           search.addEventListener("input", (e) => {
@@ -3758,23 +3748,31 @@
           simulationTimer = setTimeout(simulationTick, simulation.interval);
         }
         refreshSimulationView();
-        refreshSimulationDock();
+        refreshSimulationControls();
       }
       function stopSimulation() {
         clearTimeout(simulationTimer);
         if (simulation && ["running", "paused"].includes(simulation.phase))
           simulation.phase = "stopped";
         refreshSimulationView();
-        refreshSimulationDock();
+        refreshSimulationControls();
       }
-      function refreshSimulationDock() {
-        const dock = $("#simulation-dock");
-        if (!simulation || !["running", "paused"].includes(simulation.phase)) {
-          dock.hidden = true;
-          return;
-        }
-        dock.hidden = view === "orders";
-        dock.innerHTML = `<button data-navigate="orders"><span class="sim-live-dot"></span><span>Simulação ${simulation.phase === "paused" ? "pausada" : "ao vivo"}<small>${simulation.created} / ${simulation.target} pedidos · ${money(simulation.total)}</small></span></button><button class="icon-button" data-action="sim-pause" aria-label="${simulation.phase === "paused" ? "Continuar simulação" : "Pausar simulação"}">${simulation.phase === "paused" ? "▷" : "Ⅱ"}</button>`;
+      function simulationControlMarkup() {
+        const active =
+          simulation && ["running", "paused"].includes(simulation.phase);
+        return `<p>${simulation ? `${simulation.phase === "running" ? "Simulação em andamento" : simulation.phase === "paused" ? "Simulação pausada" : "Simulação encerrada"} · ${integer(simulation.created)} / ${integer(simulation.target)} pedidos · ${money(simulation.total)}` : "Nenhuma simulação em andamento."}</p><div class="simulation-settings-actions">${active ? `<button type="button" class="secondary-button" data-action="sim-pause" aria-label="${simulation.phase === "paused" ? "Continuar simulação" : "Pausar simulação"}">${simulation.phase === "paused" ? "Continuar" : "Pausar"}</button><button type="button" class="secondary-button" data-action="sim-stop">Encerrar</button>` : ""}<button type="button" class="text-button" data-action="sim-open-orders">Ir para Pedidos</button></div>`;
+      }
+      function refreshSimulationControls() {
+        const controls = $("#simulation-editor-controls");
+        if (!controls || !$("#dialog").open) return;
+        const focused = controls.contains(document.activeElement)
+          ? document.activeElement.dataset.action
+          : null;
+        controls.innerHTML = simulationControlMarkup();
+        if (focused)
+          controls
+            .querySelector(`[data-action="${focused}"]`)
+            ?.focus({ preventScroll: true });
       }
       function saleNotification(order, bulk = false) {
         const feed = $("#sales-feed"),
@@ -3784,11 +3782,11 @@
         feed.prepend(card);
         while (feed.children.length > 3) feed.lastElementChild.remove();
         setTimeout(() => card.remove(), 4200);
-        refreshSimulationDock();
+        refreshSimulationControls();
       }
       function finishSimulation() {
         clearTimeout(simulationTimer);
-        refreshSimulationDock();
+        refreshSimulationControls();
         toast(
           `Lote concluído: ${integer(simulation.created)} pedidos simulados · ${money(simulation.total)}`,
         );
@@ -3837,6 +3835,10 @@
         "simulate-sales": openSimulation,
         "sim-pause": pauseSimulation,
         "sim-stop": stopSimulation,
+        "sim-open-orders": () => {
+          closeDialog();
+          navigate("orders");
+        },
         "sim-sound": () => {
           if (!simulation) return;
           simulation.options.sound = !simulation.options.sound;
